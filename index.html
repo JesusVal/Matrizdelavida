@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        tr, td{
+            border: solid black;
+        }
+        table{
+            height: 600px;
+            width: 600px;
+            border-collapse: collapse;
+        }
+        input[type=checkbox]{
+            /* visibility: hidden; */
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            /* position:relative; */
+            /* top: 0; */
+            /* left: 0; */
+            opacity: 0;
+            /* visibility: hidden; */
+            /* display: none; */
+            /* color: inherit; */
+            /* background-color: transparent; */
+            /* background-color: black; */
+            /* outline-color: black; */
+        }
+        div{
+            background-color: white;
+            height: 100%;
+            width: auto;
+            inset-block-start:initial;
+            /* align-content: center; */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <input type="number" name="num" id="inputnumero">
+    <button onClick='crearnuevatabla()''>crear tabla</button>
+    <hr>
+    
+    <table id="tabla-check" align="center">
+
+    </table>
+    
+    <script>
+        let table = document.getElementById('tabla-check');
+
+        let tam = 20;
+        let row;
+        let cell;
+
+        function createTable( tamanio ){
+            table.innerHTML = '';
+            
+            for( let i = 0 ; i < tamanio ; i++){
+            row = table.insertRow(i);
+
+            for( let j = 0 ; j < tamanio ; j++){
+                cell = row.insertCell(j);
+                cell.innerHTML = `<div><input type="checkbox" name="" onClick='cambiarColor(this.parentElement)'></div>`;
+                }
+            }
+            // console.log(table.innerHTML);
+        }
+        createTable(tam);
+
+        
+
+        // ta
+        // for( let i = 0 ; i < tamanio ; i++){
+        //     for( let j = 0 ; j < tamanio ; j++){
+
+        //     }
+        // }
+
+        function cambiarColor(div){
+            // console.log(div);
+            console.log(div.getElementsByTagName('input')[0].checked);
+            if(div.getElementsByTagName('input')[0].checked){
+                div.style.backgroundColor = 'black';
+            }else{
+                div.style.backgroundColor = 'white';
+            }
+            
+        }
+
+        function crearnuevatabla(){
+            console.log('holi')
+            let numero = document.getElementById('inputnumero').value;
+            // console.log(numero.value);
+            if( numero == '' ){
+                alert('ingresa un numero');
+            }else if(numero < 2 ){
+                alert('nmms pon un numero mayor');
+            }else if(numero > 50){
+                alert('tampoco te mames, mas bajo')
+            }else{
+                createTable(numero);
+            }
+        }
+        
+
+    </script>
+
+</body>
+</html>
